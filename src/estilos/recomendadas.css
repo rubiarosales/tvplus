@@ -1,0 +1,20 @@
+.recomendadas-card{
+    display: flex;
+}
+
+.recomendadas-container{
+    position: relative;
+    margin: auto;
+    color: white;
+}
+
+.slider-recomendadas{
+    /* width: 90%; */
+    margin: auto;
+}
+.vermas-card{
+    background-color: transparent;
+    color: white;
+    margin: auto;
+  }
+  

@@ -1,0 +1,68 @@
+.peli-card {
+    max-height: 800px;
+    position: relative;
+    object-fit: cover;
+    /* border-radius: none; */
+}
+
+.dest-options {
+    opacity: 0;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: hsla(0, 0%, 0%, 0.787);
+}
+
+.dest-options:hover{
+    opacity: 1;
+    transition: opacity 500ms;
+}
+
+
+.dest-icons {
+    font-size: 100px;
+    margin: 20px;
+    color: rgb(175, 16, 66);
+}
+
+.destacadas-info {
+    color: white;
+    text-shadow: 2px 2px 1px black;
+    font-size: large;
+    font-weight: 600;
+    padding: 5px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.peli-card-container {
+    border: none;
+    border-radius: none;
+}
+
+
+@media only screen and (min-width: 800px) {
+
+    .destacadas-info {
+        width: 50%;
+        max-width: 600px;
+        justify-content: end;
+     
+    }
+
+    .peli-card {
+        object-position: 100% 30%;
+    }
+
+    .dest-icons {
+        font-size: 150px;
+        margin: 40px;
+    }
+
+
+}

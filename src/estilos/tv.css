@@ -1,0 +1,14 @@
+.tv-card{
+    display: flex;
+}
+
+.tv-container{
+    position: relative;
+    margin: auto;
+    color: white;
+}
+
+.slider-tv{
+    /* width: 90%; */
+    margin: auto;
+}

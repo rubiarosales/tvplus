@@ -1,0 +1,9 @@
+.genero-card{
+    height: 150px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.generos-container{
+    color: white;
+}

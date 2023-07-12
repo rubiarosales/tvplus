@@ -1,0 +1,14 @@
+.peliculas-card{
+    display: flex;
+}
+
+.peliculas-container{
+    position: relative;
+    margin: auto;
+    color: white;
+}
+
+.slider-peliculas{
+    /* width: 90%; */
+    margin: auto;
+}

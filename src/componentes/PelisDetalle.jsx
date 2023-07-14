@@ -136,7 +136,9 @@ export default function PelisDetalle() {
               {trailerOficial && trailerOficial.length > 0 ? (
                 <YouTube videoId={trailerOficial[0].key} opts={opts} />
               ) : (
-                <YouTube videoId={videos[0].key} opts={opts} />
+                // <YouTube videoId={videos[0].key} opts={opts} />
+                <p>No se encontró el trailer oficial</p>
+
               )}
           
               {videos.length > 0 ? (

@@ -16,7 +16,7 @@ import { FaCirclePlus } from 'react-icons/fa6';
 export default function Recomendadas() {
 
     const [recomendadas, setRecomendadas] = useState([]);
-    const urlImg = 'https://image.tmdb.org/t/p/w200';
+    const urlImg = 'https://image.tmdb.org/t/p/w500';
     const options = {
         method: 'GET',
         headers: {
@@ -81,7 +81,7 @@ export default function Recomendadas() {
             }, {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 1,
+                    slidesToShow: 2,
                     slidesToScroll: 1
                 }
             }

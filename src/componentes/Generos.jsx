@@ -6,8 +6,14 @@ import '../estilos/generos.css';
 
 
 export default function Generos() {
+    let generos = [];
     const [generosPelis, setGenerosPelis] = useState([]);
     const [generosTv, setGenerosTv] = useState([]);
+
+generos =generosPelis.concat(generosTv);
+console.log(generosPelis);
+console.log(generosTv);
+console.log(generos);
 
     const options = {
         method: 'GET',
@@ -52,22 +58,13 @@ export default function Generos() {
 
             
            <Slider {...settings}>
-                {generosPelis.map((generoPeli) => (
-                    <div key={generoPeli.id} className="genero-card d-flex align-items-center justify-content-center">
-                        <h3>{generoPeli.name}</h3>
+                {generos.map((genero) => (
+                    <div key={genero.id} className="genero-card d-flex align-items-center justify-content-center">
+                        <h3>{genero.name}</h3>
                     </div>
                 ))}
             </Slider>
             </div>
-            <Slider {...settings}>
-                
-                 {generosTv.map((generoTv) => (
-                    <div key={generoTv.id} className="genero-card d-flex align-items-center justify-content-center">
-                        <h3>{generoTv.name}</h3>
-                    </div>
-                ))}
-
-            </Slider>
         </div>
     );
 }

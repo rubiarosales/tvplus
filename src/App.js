@@ -1,25 +1,19 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Menu from './componentes/Navbar';
-import Destacadas from './componentes/Destacadas';
-import Recomendadas from './componentes/Recomendadas';
-import DescubrePelis from './componentes/DescubrePelis';
-import DescubreTV from './componentes/DescubreTV';
-import Generos from './componentes/Generos';
-
-
+import Home from './componentes/Home';
+import PelisDetalle from './componentes/PelisDetalle'
+import { Route, Routes, Link } from 'react-router-dom';
 
 
 function App() {
   return (
     <div className="App">
-      <Menu/>
-      <Destacadas/>
-      <Recomendadas/>
-      <DescubrePelis/>
-      <DescubreTV/>
-      <Generos/>
-
+      <Menu />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/detallepelis/:id" element={<PelisDetalle/>} />
+      </Routes>
 
     </div>
   );

@@ -105,14 +105,14 @@ export default function Recomendadas() {
 
                         <div className='options'>
                             <h3 className='icons'> <FaCirclePlus /></h3>
-                            <h3 className='icons' > <Link to={`/detallepelis/${recomendada.id}`}><FaCirclePlay /></Link></h3>
+                            <h3 className='icons' > <Link className='text-decoration-none text-white text-center'to={`/detallepelis/${recomendada.id}`}><FaCirclePlay /></Link></h3>
                         </div>
 
                     </Card>
 
                 ))}
                 <Card style={{ width: '18rem' }} className='vermas-card'>
-                    <h3>Ver más</h3>
+                <Link className='text-decoration-none text-white text-center'to='/peliculas'><h3>Ver más</h3></Link>
                 </Card>
             </Slider>
         </div>

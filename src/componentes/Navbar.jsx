@@ -12,7 +12,7 @@ function Menu() {
   return (
         <Navbar key='false' expand='false' className="menu"data-bs-theme="dark">
           <Container fluid>
-            <Navbar.Brand href="#">TV plus</Navbar.Brand>
+            <Navbar.Brand href="#"><Link className='text-decoration-none text-white text-center' to='/'>TV plus</Link></Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-false`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-false`}
@@ -28,9 +28,9 @@ function Menu() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1">Inicio</Nav.Link>
-                  <Nav.Link href="#action2">Películas</Nav.Link>
-                  <Nav.Link href="#action2">Series</Nav.Link>
+                  <Nav.Link href="#action1"><Link className='text-decoration-none text-white text-center' to='/'>Inicio</Link></Nav.Link>
+                  <Nav.Link href="#action2"><Link className='text-decoration-none text-white text-center' to='/peliculas'>Peliculas</Link></Nav.Link>
+                  <Nav.Link href="#action2"><Link className='text-decoration-none text-white text-center' to='/seriestv'>Series</Link></Nav.Link>
                   <NavDropdown
                     title="Categorías"
                     id={`offcanvasNavbarDropdown-expand-false`}

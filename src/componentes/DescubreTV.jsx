@@ -104,14 +104,14 @@ export default function DescubreTv() {
                       
                         <div className='options'>
                             <h3 className='icons'> <FaCirclePlus /></h3>
-                            <h3 className='icons' > <Link to={`/detalletv/${tv.id}`}><FaCirclePlay /></Link></h3>
+                            <h3 className='icons' > <Link className='text-decoration-none text-white text-center' to={`/detalletv/${tv.id}`}><FaCirclePlay /></Link></h3>
                         </div>
                         
                     </Card>
 
                 ))}
                  <Card style={{ width: '18rem' }} className='vermas-card'>
-                    <h3>Ver más</h3>
+                 <Link className='text-decoration-none text-white text-center' to='/seriestv'><h3>Ver más</h3></Link>
                 </Card>
             </Slider>
         </div>

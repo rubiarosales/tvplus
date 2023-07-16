@@ -12,3 +12,10 @@
     /* width: 90%; */
     margin: auto;
 }
+
+.scroll-infinito{
+    height: 100%;
+    overflow: auto;
+    display:flex;
+    /* flex-direction: column-reverse; */
+}

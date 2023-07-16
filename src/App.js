@@ -6,6 +6,7 @@ import PelisDetalle from './componentes/PelisDetalle'
 import { Route, Routes, Link } from 'react-router-dom';
 import TvDetalle from './componentes/SeriesDetalle';
 import Peliculas from './componentes/Peliculas';
+import Series from './componentes/Series';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/detallepelis/:id" element={<PelisDetalle/>} />
         <Route path="/detalletv/:id" element={<TvDetalle/>} />
         <Route path="/peliculas" element={<Peliculas/>} />
+        <Route path="/seriestv" element={<Series/>} />
       </Routes>
 
     </div>

@@ -8,7 +8,7 @@ import { FaCirclePlus } from 'react-icons/fa6';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 
-export default function Sugeridas() {
+export default function TvSugeridas() {
 
     const { id } = useParams();
     const urlImg = 'https://image.tmdb.org/t/p/w500';
@@ -27,7 +27,7 @@ export default function Sugeridas() {
 
     const getSugerencias = async () => {
         try {
-            const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`, options);
+            const response = await axios.get(`https://api.themoviedb.org/3/tv/${id}/similar?language=en-US&page=1`, options);
             setSugerencias(response.data.results);
         } catch (error) {
             console.log(error);
@@ -123,7 +123,7 @@ export default function Sugeridas() {
 
                         <div className='options'>
                             <h3 className='icons'> <FaCirclePlus /></h3>
-                            <h3 className='icons' > <Link to={`/detallepelis/${sugerida.id}`}><FaCirclePlay /></Link></h3>
+                            <h3 className='icons' > <Link to={`/detalletv/${sugerida.id}`}><FaCirclePlay /></Link></h3>
                         </div>
 
                     </Card>

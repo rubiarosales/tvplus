@@ -11,6 +11,7 @@ import '../estilos/tv.css';
 import '../index.css';
 import { FaCirclePlay } from 'react-icons/fa6';
 import { FaCirclePlus } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
 
 export default function DescubreTv() {
 
@@ -103,7 +104,7 @@ export default function DescubreTv() {
                       
                         <div className='options'>
                             <h3 className='icons'> <FaCirclePlus /></h3>
-                            <h3 className='icons'> <FaCirclePlay /></h3>
+                            <h3 className='icons' > <Link to={`/detalletv/${tv.id}`}><FaCirclePlay /></Link></h3>
                         </div>
                         
                     </Card>

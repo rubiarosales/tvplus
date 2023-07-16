@@ -5,10 +5,11 @@ import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Slider from "react-slick";
 import Sugeridas from './Sugeridas';
+import TvSugeridas from './TvSugeridas';
 
 
 
-export default function PelisDetalle() {
+export default function TvDetalle() {
 
   const { id } = useParams();
 
@@ -28,7 +29,7 @@ export default function PelisDetalle() {
 
   const getVideos = async () => {
     try {
-      const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options);
+      const response = await axios.get(`https://api.themoviedb.org/3/tv/${id}/videos?language=en-US`, options);
       setVideos(response.data.results);
     } catch (error) {
       console.log(error);
@@ -84,7 +85,7 @@ export default function PelisDetalle() {
     slidesToShow: 6,
     swipeToSlide: true,
     // slidesToScroll: 6,
-    // initialSlide: 0,
+    initialSlide: 0,
     responsive: [
       {
         breakpoint: 1544,
@@ -191,7 +192,7 @@ export default function PelisDetalle() {
 
       )}
 
-      <Sugeridas />
+      <TvSugeridas/>
     </div>
   );
 

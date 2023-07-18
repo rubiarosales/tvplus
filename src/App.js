@@ -7,21 +7,41 @@ import { Route, Routes, Link } from 'react-router-dom';
 import TvDetalle from './componentes/SeriesDetalle';
 import Peliculas from './componentes/Peliculas';
 import Series from './componentes/Series';
+import { BrowserRouter } from 'react-router-dom';
+import Login from './componentes/Login';
+import Registro from './componentes/Registro';
+import { AuthProvider } from './componentes/AuthContext';
+import { UserContext } from './componentes/AuthContext'; //ESTO LO TENGO QUE IMPORTAR EN CADA COMPONENTE QUE USE USER
+import React, { useContext } from 'react';//ESTO TAMBIEN
 
 
 function App() {
-  return (
-    <div className="App">
-      <Menu />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/detallepelis/:id" element={<PelisDetalle/>} />
-        <Route path="/detalletv/:id" element={<TvDetalle/>} />
-        <Route path="/peliculas" element={<Peliculas/>} />
-        <Route path="/seriestv" element={<Series/>} />
-      </Routes>
 
-    </div>
+  // const user = useContext(UserContext); // eESTO LO DEFINO EN CADA COMPONENTE QUE USE USER Y TOMA LOS DATOS DE AUTHCONTEXT
+
+  return (
+
+   
+      
+        <div className="App">
+       <AuthProvider> 
+          <BrowserRouter>
+            <Menu />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/registro" element={<Registro />} />
+              <Route path="/detallepelis/:id" element={<PelisDetalle />} />
+              <Route path="/detalletv/:id" element={<TvDetalle />} />
+              <Route path="/peliculas" element={<Peliculas />} />
+              <Route path="/seriestv" element={<Series />} />
+            </Routes>
+          </BrowserRouter>  
+          </AuthProvider>
+        </div>
+
+    
+   
   );
 }
 

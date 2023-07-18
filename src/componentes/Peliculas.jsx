@@ -79,7 +79,7 @@ export default function Peliculas() {
 
                                 <div className='options'>
                                     <h3 className='icons'> <FaCirclePlus /></h3>
-                                    <h3 className='icons' > <Link to={`/detallepelis/${pelicula.id}`}><FaCirclePlay /></Link></h3>
+                                    <h3 className='icons ' > <Link className='text-decoration-none text-white text-center'to={`/detallepelis/${pelicula.id}`}><FaCirclePlay /></Link></h3>
                                 </div>
 
                             </Card>

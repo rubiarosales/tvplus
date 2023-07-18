@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 export default function DescubreTv() {
 
     const [tvseries, setTvseries] = useState([]);
-    const urlImg = 'https://image.tmdb.org/t/p/w200';
+    const urlImg = 'https://image.tmdb.org/t/p/original';
     const options = {
         method: 'GET',
         headers: {
@@ -34,6 +34,7 @@ export default function DescubreTv() {
 
 
     var settings = {
+        arrows:false,
         dots: false,
         infinite: false,
         speed: 500,

@@ -16,7 +16,7 @@ import {Link} from 'react-router-dom';
 export default function DescubrePelis() {
 
     const [peliculas, setPeliculas] = useState([]);
-    const urlImg = 'https://image.tmdb.org/t/p/w200';
+    const urlImg = 'https://image.tmdb.org/t/p/original';
     const options = {
         method: 'GET',
         headers: {
@@ -34,6 +34,7 @@ export default function DescubrePelis() {
 
 
     var settings = {
+        arrows:false,
         dots: false,
         infinite: false,
         centerPadding: "60px",
@@ -46,7 +47,7 @@ export default function DescubrePelis() {
                 breakpoint: 1674,
                 settings: {
                     slidesToShow: 6,
-                    slidesToScroll: 1,
+                    slidesToScroll: 6,
 
                 }
             },
@@ -54,7 +55,7 @@ export default function DescubrePelis() {
                 breakpoint: 1424,
                 settings: {
                     slidesToShow: 5,
-                    slidesToScroll: 1,
+                    slidesToScroll: 6,
 
                 }
             },
@@ -62,22 +63,22 @@ export default function DescubrePelis() {
                 breakpoint: 1200,
                 settings: {
                     slidesToShow: 4,
-                    slidesToScroll: 1,
-                    initialSlide: 1
+                    slidesToScroll: 4,
+                    initialSlide: 0
                 }
             },
             {
                 breakpoint: 880,
                 settings: {
                     slidesToShow: 3,
-                    slidesToScroll: 1
+                    slidesToScroll: 3
                 }
             },
             {
                 breakpoint: 680,
                 settings: {
                     slidesToShow: 2,
-                    slidesToScroll: 1
+                    slidesToScroll: 2
                 }
             }, {
                 breakpoint: 480,

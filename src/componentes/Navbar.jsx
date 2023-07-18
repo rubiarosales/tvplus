@@ -7,8 +7,16 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link } from 'react-router-dom';
+import { HiUsers } from "react-icons/hi";
+import { HiMiniArrowRightOnRectangle } from "react-icons/hi2";
+// import { useContext } from 'react';
+// import { UserContext } from '../App';
+
 
 function Menu() {
+
+  // const user = useContext(UserContext);
+
   return (
         <Navbar key='false' expand='false' className="menu"data-bs-theme="dark">
           <Container fluid>
@@ -54,8 +62,13 @@ function Menu() {
                   />
                   <Button variant="outline-light">Search</Button>
                 </Form>
-              </Offcanvas.Body>
+                <Nav.Link href="#action2"><Link className={`text-decoration-none text-white text-center fs-3`} to='/seriestv'><HiUsers/></Link></Nav.Link>
+                <Nav.Link href="#action2"><Link className='text-decoration-none text-white text-center fs-3' to='/seriestv'><HiMiniArrowRightOnRectangle/></Link></Nav.Link>
+
+              </Offcanvas.Body> 
+              
             </Navbar.Offcanvas>
+           
           </Container>
         </Navbar>
 );

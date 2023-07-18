@@ -163,7 +163,7 @@ export default function PelisDetalle() {
           onReady={videoOnReady}
           className={'video'}
           iframeClassName={'video-frame'}
-
+        
         //completar luego:
         // loading={string}
         // onPlay={func}                     
@@ -183,7 +183,7 @@ export default function PelisDetalle() {
       {videos.length > 0 ? (
         <Slider {...settings} className='slider-videos'>
           {videos.map((video) => (
-            <YouTube videoId={video.key} opts={optsSlider} />
+            <YouTube  videoId={video.key} opts={optsSlider} />
           ))}
         </Slider>
       ) : (

@@ -6,16 +6,22 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { HiUsers } from "react-icons/hi";
 import { HiMiniArrowRightOnRectangle } from "react-icons/hi2";
 // import { useContext } from 'react';
 // import { UserContext } from '../App';
-
+import { useAuth } from './AuthContext';
 
 function Menu() {
-
+const navigate = useNavigate();
   // const user = useContext(UserContext);
+  const { salir } = useAuth();
+
+const manejarSalida = async () =>{
+  await salir;
+  navigate ('/');
+}
 
   return (
         <Navbar key='false' expand='false' className="menu"data-bs-theme="dark">
@@ -62,8 +68,8 @@ function Menu() {
                   />
                   <Button variant="outline-light">Search</Button>
                 </Form>
-                <Nav.Link href="#action2"><Link className={`text-decoration-none text-white text-center fs-3`} to='/seriestv'><HiUsers/></Link></Nav.Link>
-                <Nav.Link href="#action2"><Link className='text-decoration-none text-white text-center fs-3' to='/seriestv'><HiMiniArrowRightOnRectangle/></Link></Nav.Link>
+                <Nav.Link href="#action2"><Link className={`text-decoration-none text-white text-center fs-3`} to='/login'><HiUsers/></Link></Nav.Link>
+                <Nav.Link href="#action2"><Link className='text-decoration-none text-white text-center fs-3' onClick={manejarSalida}><HiMiniArrowRightOnRectangle/></Link></Nav.Link>
 
               </Offcanvas.Body> 
               

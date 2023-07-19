@@ -10,8 +10,8 @@ import Series from './componentes/Series';
 import { BrowserRouter } from 'react-router-dom';
 import Login from './componentes/Login';
 import Registro from './componentes/Registro';
-import { AuthProvider } from './componentes/AuthContext';
-import { UserContext } from './componentes/AuthContext'; //ESTO LO TENGO QUE IMPORTAR EN CADA COMPONENTE QUE USE USER
+
+import AuthProvider, { UserContext } from './componentes/AuthContext'; //ESTO LO TENGO QUE IMPORTAR EN CADA COMPONENTE QUE USE USER
 import React, { useContext } from 'react';//ESTO TAMBIEN
 
 
@@ -24,7 +24,7 @@ function App() {
    
       
         <div className="App">
-       <AuthProvider> 
+      <AuthProvider> 
           <BrowserRouter>
             <Menu />
             <Routes>

@@ -43,6 +43,7 @@ export default function Sugeridas() {
         dots: false,
         arrows: false,
         speed: 300,
+        infinite: false,
         slidesToShow: 6,
         swipeToSlide: true,
         // slidesToScroll: 6,

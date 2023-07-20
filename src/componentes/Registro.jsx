@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import '../estilos/log.css';
 import { PiHandsClappingDuotone } from "react-icons/pi";
 import Button from 'react-bootstrap/Button';
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import { useAuth } from './AuthContext';
 
 
@@ -14,6 +14,7 @@ function Registro() {
     const navigate = useNavigate();
 
     const [nombre, setNombre] = useState("");
+    // const [avatar, setAvatar] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState();
@@ -23,14 +24,19 @@ function Registro() {
     console.log(user);
     
     //llamo el registro desde el AuthContext
-    const { registrar } = useAuth();
+    const { registrar , cargarDatos} = useAuth();
 
     const manejarRegistro = async (e) => {
         e.preventDefault();
         setError("");
         try {
             await registrar(email, password);
-            navigate("/");
+            // navigate("/");
+            console.log(user);
+        //   if(user){
+        //         await cargarDatos(nombre);
+        //         console.log("carga de datos")
+        //     }
         } catch (error) {
             if (error.code === "auth/email-already-in-use") {
                 setError("Email ya resgistrado")
@@ -42,8 +48,16 @@ function Registro() {
                 }
             }
         }
+       
     }
 
+    // useEffect(() => {
+    //     if (user && nombre) {
+    //       cargarDatos(nombre, user);
+    //     }
+    //   }, [user, nombre]);
+
+    
     // const registrar = async (e) => {
     //     e.preventDefault();
     //     await createUserWithEmailAndPassword(auth, email, password)

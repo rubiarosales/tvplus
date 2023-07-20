@@ -17,6 +17,7 @@ function Login() {
   // const [user,setUser]=useState(null);
 
   const { entrar } = useAuth();
+  const { user } = useAuth();
 
   const manejarLogin = async (e) => {
     e.preventDefault();
@@ -39,10 +40,10 @@ function Login() {
     }
   }
 
-
+console.log(user)
   return (
     <div className='m-4'>
-      <h3 className='text-center text-white'>Ups! Parece que no has ingresado</h3>
+      { !user && <h3 className='text-center text-white'>Ups! Parece que no has ingresado</h3>}
       <h3 className='text-center text-white fs-2'><HiOutlineEmojiSad /></h3>
       <Form onSubmit={manejarLogin} className='m-auto log-form p-4 d-flex flex-column'>
         <div className='mb-2 text-white'>

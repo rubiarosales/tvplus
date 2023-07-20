@@ -16,18 +16,29 @@ import { useAuth } from './AuthContext';
 function Menu() {
 const navigate = useNavigate();
   // const user = useContext(UserContext);
+  const { user } = useAuth();
   const { salir } = useAuth();
-
 const manejarSalida = async () =>{
-  await salir;
-  navigate ('/');
-}
+  
+  try {
+    await salir();
+    console.log("Sesión cerrada");
+    navigate('/');
+  } catch (error) {
+    console.log(error)
+  }
 
+  
+}
+console.log(user);
   return (
         <Navbar key='false' expand='false' className="menu"data-bs-theme="dark">
           <Container fluid>
             <Navbar.Brand href="#"><Link className='text-decoration-none text-white text-center' to='/'>TV plus</Link></Navbar.Brand>
+           
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-false`} />
+ 
+
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-false`}
               aria-labelledby={`offcanvasNavbarLabel-expand-false`}
@@ -35,6 +46,7 @@ const manejarSalida = async () =>{
               data-bs-theme="dark"
               className="menu-off"
             >
+              { user && <h3 className='text-white text-end'>Hola! {user.displayName} </h3>}
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-false`}>
                   
@@ -68,8 +80,8 @@ const manejarSalida = async () =>{
                   />
                   <Button variant="outline-light">Search</Button>
                 </Form>
-                <Nav.Link href="#action2"><Link className={`text-decoration-none text-white text-center fs-3`} to='/login'><HiUsers/></Link></Nav.Link>
-                <Nav.Link href="#action2"><Link className='text-decoration-none text-white text-center fs-3' onClick={manejarSalida}><HiMiniArrowRightOnRectangle/></Link></Nav.Link>
+                {!user && <Nav.Link href="#action2"><Link className={`text-decoration-none text-white text-center fs-3`} to='/login'><HiUsers/></Link></Nav.Link>}
+                {user && <Nav.Link href="#action2"><Link className='text-decoration-none text-white text-center fs-3' onClick={manejarSalida}><HiMiniArrowRightOnRectangle/></Link></Nav.Link>}
 
               </Offcanvas.Body> 
               

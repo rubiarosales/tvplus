@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, sendPasswordResetEmail  } from "firebase/auth";
 import { auth } from '../firebaseConfig/Firebase';
 import { useEffect } from 'react';
 
@@ -20,29 +20,15 @@ If(!userContext) throw new Error('No hay Auth Provider')
 export default function AuthProvider({ children }) {
 
   const [user,setUser] =useState(null);
+  const [userId,setUserId] =useState(null);
 
   const registrar = async (email, password) => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      await createUserWithEmailAndPassword(auth, email, password)
+      
     } catch (error) {
       throw error; 
     }
-    // .then((userCredential) => {
-    //     // Signed in 
-    //     const user = userCredential.user;
-    //     // ...
-    //     console.log(user);
-    // })
-    // .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     // ..
-    //     // console.log(error)
-    //     // console.log(errorCode);
-    //     console.log(errorMessage)
-
-    //    ;
-    // });
   }
 
   const cargarDatos = async (nombre) =>{
@@ -69,6 +55,13 @@ export default function AuthProvider({ children }) {
 
   const salir = () => signOut(auth);
 
+  const recuperar = async (auth, email) =>{
+    try {
+     await sendPasswordResetEmail(auth, email);
+    } catch (error) {
+      throw error;
+    }}
+
   // const userAuth = auth.currentUser;
 
   //el unsubscribe es para que no quede la info en memoria
@@ -82,7 +75,7 @@ export default function AuthProvider({ children }) {
 
 
   return (
-    <AuthContext.Provider value={{ registrar, entrar , user , salir, cargarDatos}}>
+    <AuthContext.Provider value={{ registrar, entrar , user, salir, cargarDatos, recuperar}}>
       {children}
     </AuthContext.Provider>
   )

@@ -13,6 +13,9 @@ import Registro from './componentes/Registro';
 
 import AuthProvider, { UserContext } from './componentes/AuthContext'; //ESTO LO TENGO QUE IMPORTAR EN CADA COMPONENTE QUE USE USER
 import React, { useContext } from 'react';//ESTO TAMBIEN
+import Recupero from './componentes/Recupero';
+import ProtectedRoute from './componentes/ProtectedRoute';
+import CrearUsuario from './componentes/CrearUsuario';
 
 
 function App() {
@@ -21,27 +24,40 @@ function App() {
 
   return (
 
-   
-      
-        <div className="App">
-      <AuthProvider> 
-          <BrowserRouter>
-            <Menu />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/registro" element={<Registro />} />
-              <Route path="/detallepelis/:id" element={<PelisDetalle />} />
-              <Route path="/detalletv/:id" element={<TvDetalle />} />
-              <Route path="/peliculas" element={<Peliculas />} />
-              <Route path="/seriestv" element={<Series />} />
-            </Routes>
-          </BrowserRouter>  
-          </AuthProvider>
-        </div>
 
-    
-   
+
+    <div className="App">
+      <AuthProvider>
+        <BrowserRouter>
+          <Menu />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/registro" element={<Registro />} />
+            <Route path="/recuperar" element={<Recupero />} />
+            <Route path="/detallepelis/:id" element={
+              <ProtectedRoute>
+                <PelisDetalle />
+              </ProtectedRoute>} />
+            <Route path="/detalletv/:id" element={
+              <ProtectedRoute>
+                <TvDetalle />
+              </ProtectedRoute>
+            } />
+            <Route path="/crearusuario" element={
+              <ProtectedRoute>
+                <CrearUsuario />
+              </ProtectedRoute>
+            } />
+            <Route path="/peliculas" element={<Peliculas />} />
+            <Route path="/seriestv" element={<Series />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
+    </div>
+
+
+
   );
 }
 

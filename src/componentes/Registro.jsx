@@ -3,8 +3,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import '../estilos/log.css';
 import { PiHandsClappingDuotone } from "react-icons/pi";
 import Button from 'react-bootstrap/Button';
-import { useState , useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
+
 
 
 
@@ -12,9 +13,9 @@ function Registro() {
 
 
     const navigate = useNavigate();
-
-    const [nombre, setNombre] = useState("");
-    // const [avatar, setAvatar] = useState("");
+    //1. declaracion de variables de estado
+    // const [nombre, setNombre] = useState("");
+    // // const [avatar, setAvatar] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState();
@@ -22,21 +23,17 @@ function Registro() {
     //llamo el usuario actual desde el AuthContext
     const { user } = useAuth();
     console.log(user);
-    
+
     //llamo el registro desde el AuthContext
-    const { registrar , cargarDatos} = useAuth();
+    const { registrar, cargarDatos } = useAuth();
 
     const manejarRegistro = async (e) => {
         e.preventDefault();
         setError("");
         try {
             await registrar(email, password);
-            // navigate("/");
             console.log(user);
-        //   if(user){
-        //         await cargarDatos(nombre);
-        //         console.log("carga de datos")
-        //     }
+            navigate('/crearusuario')
         } catch (error) {
             if (error.code === "auth/email-already-in-use") {
                 setError("Email ya resgistrado")
@@ -44,53 +41,14 @@ function Registro() {
                 if (error.code === "auth/weak-password") {
                     setError("Contraseña muy débil")
                 } else {
-                    setError("Verifique los datos ingresados")
+                    setError(error.code)
                 }
             }
         }
-       
+
     }
 
-    // useEffect(() => {
-    //     if (user && nombre) {
-    //       cargarDatos(nombre, user);
-    //     }
-    //   }, [user, nombre]);
 
-    
-    // const registrar = async (e) => {
-    //     e.preventDefault();
-    //     await createUserWithEmailAndPassword(auth, email, password)
-    //         .then((userCredential) => {
-    //             // Signed in 
-    //             const user = userCredential.user;
-    //             // ...
-    //             console.log(user);
-    //         })
-    //         .catch((error) => {
-    //             const errorCode = error.code;
-    //             const errorMessage = error.message;
-    //             // ..
-    //             console.log(error)
-    //             console.log(errorCode);
-    //             console.log(errorMessage)
-    //             return(
-    //                 <p>{errorMessage}</p>
-    //             )
-    //            ;
-    //         });
-
-    // }
-
-    //  const mostrarError = (error)=>{
-    //     if (error === "auth/email-already-in-use") {
-    //     setMensaje("Email en uso")}
-    //     else{
-    //         if (error === "auth/weak-password") {
-    //             setMensaje("La contraseña es muy debil")}
-    //     }
-    //     return (<p>{mensaje}</p>)
-    //  }
 
     return (
         <div className='m-4'>
@@ -99,7 +57,7 @@ function Registro() {
             <h3 className='text-center text-white'>Bravo! Vamos a registrarte</h3>
             <h3 className='text-center text-white fs-2'><PiHandsClappingDuotone /></h3>
             <Form onSubmit={manejarRegistro} className='m-auto log-form p-4 d-flex flex-column'>
-                <div className='mb-2 text-white'>
+                {/* <div className='mb-2 text-white'>
                     <Form.Label htmlFor="inputNombre5">Nombre</Form.Label>
 
                     <Form.Control
@@ -110,7 +68,7 @@ function Registro() {
                         aria-describedby="nombreHelpBlock"
                     />
 
-                </div>
+                </div> */}
                 <div className='mb-2 text-white'>
                     <Form.Label htmlFor="inputEmail5">Email</Form.Label>
 
@@ -138,11 +96,7 @@ function Registro() {
                         La contraseña debe tener al menos 6 caracteres
                     </Form.Text>
                 </div>
-                <div>
-                    <Form.Text className='text-white' id="recuperoHelpBlock">
-                        Olvidaste tu contraseña? <Link className=' text-white text-center ' to='/recuperar'>Recupérala</Link>
-                    </Form.Text>
-                </div>
+
 
                 {error && <p className='text-white text-center mt-3'>ERROR: {error}</p>}
 

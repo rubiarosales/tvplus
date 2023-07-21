@@ -34,7 +34,7 @@ function Login() {
         if (error.code === "auth/user-not-found") {
           setError("Usuario no registrado")
         } else {
-          setError("Verifique los datos ingresados")
+          setError(error.code)
         }
       }
     }

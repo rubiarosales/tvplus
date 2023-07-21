@@ -156,6 +156,7 @@ export default function PelisDetalle() {
 
   return (
     <div>
+    
       {trailerOficial && trailerOficial.length > 0 ? (
         <YouTube
           videoId={trailerOficial[0].key}

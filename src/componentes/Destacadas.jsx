@@ -10,6 +10,7 @@ import Row from 'react-bootstrap/Row';
 import '../estilos/destacadas.css';
 import { FaCirclePlay } from 'react-icons/fa6';
 import { FaCirclePlus } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
 
 export default function Destacadas() {
 
@@ -63,7 +64,7 @@ export default function Destacadas() {
             </div>
             <div className='dest-options'>
             <h3 className='dest-icons'> <FaCirclePlus/></h3>
-            <h3 className='dest-icons'> <FaCirclePlay/></h3>
+            <h3 className='dest-icons' > <Link className=' text-center'to={`/detallepelis/${peli.id}`}><FaCirclePlay /></Link></h3>
             </div>
           </Card>
         </Col>

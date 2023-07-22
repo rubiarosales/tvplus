@@ -16,7 +16,7 @@ import { useAuth } from './AuthContext';
 function Menu() {
 const navigate = useNavigate();
   // const user = useContext(UserContext);
-  const { user } = useAuth();
+  const { user , userData } = useAuth();
   const { salir } = useAuth();
 const manejarSalida = async () =>{
   
@@ -46,7 +46,11 @@ console.log(user);
               data-bs-theme="dark"
               className="menu-off"
             >
-              { user && <h3 className='text-white text-end'>Hola! {user.displayName} </h3>}
+              {user? <div className='d-flex justify-content-end align-items-end'>
+                <h3 className='text-white text-end mx-1'>Hola! {userData.Nombre} </h3>
+                <img className='avatar-sm' src={userData.Imagen} alt={userData.Nombre}/>
+              </div> : ""}
+              
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-false`}>
                   

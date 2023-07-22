@@ -71,7 +71,7 @@ return (
 
         <h3 className='text-center text-white'>Bravo! Vamos a registrarte</h3>
         <h3 className='text-center text-white fs-2'><PiHandsClappingDuotone /></h3>
-        <Form onSubmit={nuevoUsuario} className='m-auto log-form p-4 d-flex flex-column'>
+        <Form className='m-auto log-form p-4 d-flex flex-column'>
             <div className='mb-2 text-white'>
                 <Form.Label htmlFor="inputNombre5">Nombre</Form.Label>
 

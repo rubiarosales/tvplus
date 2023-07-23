@@ -1,10 +1,14 @@
 .peliculas-card{
     display: flex;
+    background-color: transparent;
+    color: white;
 }
+
 
 .peliculas-container{
     position: relative;
-    margin: auto;
+    /* margin: auto; */
+    margin-top: 80px;
     color: white;
 }
 

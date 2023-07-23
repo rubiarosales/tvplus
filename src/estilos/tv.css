@@ -4,8 +4,9 @@
 
 .tv-container{
     position: relative;
-    margin: auto;
     color: white;
+    margin-top: 200px;
+  
 }
 
 .slider-tv{

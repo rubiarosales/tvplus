@@ -25,16 +25,16 @@ export default function DescubreTv() {
         }
     };
     useEffect(() => {
-        axios.get('https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=2&sort_by=popularity.desc', options)
-        .then((response) => {
-            setTvseries(response.data.results);
-        })
-        .catch((error) => { console.log(error) });
+        axios.get('https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=es-ES&page=2&sort_by=popularity.desc', options)
+            .then((response) => {
+                setTvseries(response.data.results);
+            })
+            .catch((error) => { console.log(error) });
     }, []);
 
 
     var settings = {
-        arrows:false,
+        arrows: false,
         dots: false,
         infinite: false,
         speed: 500,
@@ -100,19 +100,22 @@ export default function DescubreTv() {
 
                 {tvseries.map((tv) => (
 
+                   tv.backdrop_path?
                     <Card style={{ width: '18rem' }} key={tv.id} className='tv-card '>
                         <Card.Img variant="top" src={urlImg + tv.backdrop_path} className='m-auto' />
-                      
+
                         <div className='options'>
                             <h3 className='icons'> <FaCirclePlus /></h3>
                             <h3 className='icons' > <Link className='text-decoration-none text-white text-center' to={`/detalletv/${tv.id}`}><FaCirclePlay /></Link></h3>
                         </div>
-                        
+
                     </Card>
+                    :
+                    console.log(`No hay imagen disponible de ${tv.title}`)
 
                 ))}
-                 <Card style={{ width: '18rem' }} className='vermas-card'>
-                 <Link className='text-decoration-none text-white text-center' to='/seriestv'><h3>Ver más</h3></Link>
+                <Card style={{ width: '18rem' }} className='vermas-card'>
+                    <Link className='text-decoration-none text-white text-center' to='/seriestv'><h3>Ver más</h3></Link>
                 </Card>
             </Slider>
         </div>

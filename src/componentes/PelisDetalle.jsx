@@ -28,7 +28,7 @@ export default function PelisDetalle() {
 
   const getVideos = async () => {
     try {
-      const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options);
+      const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?language=es-ES`, options);
       setVideos(response.data.results);
     } catch (error) {
       console.log(error);

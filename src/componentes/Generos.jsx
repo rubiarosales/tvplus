@@ -47,8 +47,40 @@ console.log(generos);
         centerMode: true,
         infinite: true,
         arrows: false,
-        slidesToShow: 3,
-        speed: 500
+        slidesToShow: 6,
+        speed: 500,
+        responsive: [
+
+            {
+                breakpoint: 1024,
+                settings: {
+                  slidesToShow: 5,
+                  
+                }
+            },
+            {
+                breakpoint: 800,
+                settings: {
+                  slidesToShow: 4,
+                  
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                  slidesToShow: 3,
+                  
+                }
+            },
+            {
+                breakpoint: 400,
+                settings: {
+                  slidesToShow: 2,
+                  
+                }
+            }
+
+        ]
     };
 
     return (
@@ -60,7 +92,7 @@ console.log(generos);
            <Slider {...settings}>
                 {generos.map((genero) => (
                     <div key={genero.id} className="genero-card d-flex align-items-center justify-content-center">
-                        <h3>{genero.name}</h3>
+                        <h4>{genero.name}</h4>
                     </div>
                 ))}
             </Slider>

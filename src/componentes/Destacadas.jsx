@@ -31,7 +31,7 @@ export default function Destacadas() {
   };
 
   function getMovies() {
-    axios.get('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', options)
+    axios.get('https://api.themoviedb.org/3/movie/now_playing?language=es-ES&page=1', options)
       .then((response) => {
         setPelis(response.data.results);
 
@@ -55,12 +55,13 @@ export default function Destacadas() {
     <Slider {...settings}>
 
       {pelis.map((peli) => (
+        peli.backdrop_path?
         <Col key={peli.id}>
           <Card className='h-100 peli-card-container' >
             <Card.Img className='peli-card' variant="top" src={urlImg + peli.backdrop_path} alt={peli.title} />
             <div className='destacadas-info position-absolute'>
               <h2 className=' destacadas-title'>{peli.title}</h2>
-              <p className='destacadas-resumen'>{peli.overview}</p>
+              <p className='destacadas-resumen resumen-responsive'>{peli.overview}</p>
             </div>
             <div className='dest-options'>
             <h3 className='dest-icons'> <FaCirclePlus/></h3>
@@ -68,6 +69,8 @@ export default function Destacadas() {
             </div>
           </Card>
         </Col>
+        :
+        console.log(`No hay imagen disponible de ${peli.title}`)
       ))}
 
     </Slider>

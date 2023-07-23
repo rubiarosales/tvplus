@@ -11,7 +11,7 @@ import '../estilos/peliculas.css';
 import '../index.css';
 import { FaCirclePlay } from 'react-icons/fa6';
 import { FaCirclePlus } from 'react-icons/fa6';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function DescubrePelis() {
 
@@ -25,16 +25,16 @@ export default function DescubrePelis() {
         }
     };
     useEffect(() => {
-        axios.get('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc', options)
-        .then((response) => {
-            setPeliculas(response.data.results);
-        })
-        .catch((error) => { console.log(error) });
+        axios.get('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=es-ES&page=1&sort_by=popularity.desc', options)
+            .then((response) => {
+                setPeliculas(response.data.results);
+            })
+            .catch((error) => { console.log(error) });
     }, []);
 
 
     var settings = {
-        arrows:false,
+        arrows: false,
         dots: false,
         infinite: false,
         centerPadding: "60px",
@@ -101,19 +101,22 @@ export default function DescubrePelis() {
 
                 {peliculas.map((pelicula) => (
 
-                    <Card style={{ width: '18rem' }} key={pelicula.id} className='peliculas-card '>
-                        <Card.Img variant="top" src={urlImg + pelicula.backdrop_path} className='m-auto' />
-                      
-                        <div className='options'>
-                            <h3 className='icons'> <FaCirclePlus /></h3>
-                            <h3 className='icons' > <Link className='text-decoration-none text-white text-center'to={`/detallepelis/${pelicula.id}`}><FaCirclePlay /></Link></h3>
-                        </div>
-                        
-                    </Card>
+                    pelicula.backdrop_path ?
+                        <Card style={{ width: '18rem' }} key={pelicula.id} className='peliculas-card '>
+                            <Card.Img variant="top" src={urlImg + pelicula.backdrop_path} className='m-auto' />
+
+                            <div className='options'>
+                                <h3 className='icons'> <FaCirclePlus /></h3>
+                                <h3 className='icons' > <Link className='text-decoration-none text-white text-center' to={`/detallepelis/${pelicula.id}`}><FaCirclePlay /></Link></h3>
+                            </div>
+
+                        </Card>
+                        :
+                        console.log(`No hay imagen disponible de ${pelicula.title}`)
 
                 ))}
-                 <Card style={{ width: '18rem' }} className='vermas-card'>
-                 <Link className='text-decoration-none text-white text-center' to='/peliculas'><h3>Ver más</h3></Link>
+                <Card style={{ width: '18rem' }} className='vermas-card'>
+                    <Link className='text-decoration-none text-white text-center' to='/peliculas'><h3>Ver más</h3></Link>
                 </Card>
             </Slider>
         </div>

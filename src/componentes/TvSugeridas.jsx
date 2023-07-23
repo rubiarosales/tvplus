@@ -27,7 +27,7 @@ export default function TvSugeridas() {
 
     const getSugerencias = async () => {
         try {
-            const response = await axios.get(`https://api.themoviedb.org/3/tv/${id}/similar?language=en-US&page=1`, options);
+            const response = await axios.get(`https://api.themoviedb.org/3/tv/${id}/similar?language=es-ES&page=1`, options);
             setSugerencias(response.data.results);
         } catch (error) {
             console.log(error);

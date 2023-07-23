@@ -3,6 +3,9 @@
   margin: auto;
   background-color: #000000a6;
 }
+/* .slick-list{
+  padding: 0;
+} */
 
 .options {
   opacity: 0;
@@ -11,9 +14,10 @@
   margin: auto;
   display: flex;
   justify-content: space-around;
-  align-items: end;
+  align-items: center;
   width: 100%;
   height: 100%;
+  background-color: #0f0006ef;
 
 }
 
@@ -32,7 +36,10 @@
   transition: opacity 500ms;
 }
 
-
+.buscar-form{
+  width: 350px;
+  margin: auto;
+}
 .icons {
   font-size: 30px;
   line-height: normal;

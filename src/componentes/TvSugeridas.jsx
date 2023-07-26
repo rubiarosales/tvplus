@@ -118,20 +118,21 @@ export default function TvSugeridas() {
             <Slider {...settings} className='slider-recomendadas'>
 
                 {sugerencias.map((sugerida) => (
+                    sugerida.poster_path ?
+                        <Card style={{ width: '18rem' }} key={sugerida.id} className='recomendadas-card'>
+                            <Card.Img variant="top" src={urlImg + sugerida.poster_path} className='m-auto h-100' />
 
-                    <Card style={{ width: '18rem' }} key={sugerida.id} className='recomendadas-card'>
-                        <Card.Img variant="top" src={urlImg + sugerida.poster_path} className='m-auto h-100' />
+                            <div className='options'>
+                                <h3 className='icons'> <FaCirclePlus /></h3>
+                                <h3 className='icons' > <Link className='text-decoration-none text-white text-center' to={`/detalletv/${sugerida.id}`}><FaCirclePlay /></Link></h3>
+                            </div>
 
-                        <div className='options'>
-                            <h3 className='icons'> <FaCirclePlus /></h3>
-                            <h3 className='icons' > <Link className='text-decoration-none text-white text-center' to={`/detalletv/${sugerida.id}`}><FaCirclePlay /></Link></h3>
-                        </div>
-
-                    </Card>
-
+                        </Card>
+                        :
+                        console.log(`No hay imagen disponible de ${sugerida.title}`)
                 ))}
                 <Card style={{ width: '18rem' }} className='vermas-card'>
-                <Link className='text-decoration-none text-white text-center' to='/seriestv'><h3>Ver más</h3></Link>
+                    <Link className='text-decoration-none text-white text-center' to='/seriestv'><h3>Ver más</h3></Link>
                 </Card>
             </Slider>
         </div>

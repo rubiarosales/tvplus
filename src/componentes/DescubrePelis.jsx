@@ -94,7 +94,7 @@ export default function DescubrePelis() {
 
 
     return (
-        <div className='peliculas-container'>
+        <div className='descubre-container'>
 
             <h2 className='text-start mx-2'>Nuestras Películas</h2>
             <Slider {...settings} className='slider-peliculas'>

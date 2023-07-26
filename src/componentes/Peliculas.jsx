@@ -23,71 +23,123 @@ import { AiFillHeart } from "react-icons/ai";
 export default function Peliculas() {
 
     const [peliculas, setPeliculas] = useState([]);
-    const [filtrado, setFiltrado] = useState([]);
-    const [busqueda, setBusqueda] = useState("");
+    const [busqueda, SetBusqueda] = useState("");
     const [page, setPage] = useState(1);
     const urlImg = 'https://image.tmdb.org/t/p/original';
+    const apiKey = "936306664f2d6ed8e34ac229f621469f";
 
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MzYzMDY2NjRmMmQ2ZWQ4ZTM0YWMyMjlmNjIxNDY5ZiIsInN1YiI6IjY0Njk0M2U1YzM1MTRjMDE3NDViZjZiYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.4scM_4bD4I3kPpJ-eKlrzcJvLhcyAHdZDFdBplamIzE'
+    // const options = {
+    //     method: 'GET',
+    //     headers: {
+    //         accept: 'application/json',
+    //         Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MzYzMDY2NjRmMmQ2ZWQ4ZTM0YWMyMjlmNjIxNDY5ZiIsInN1YiI6IjY0Njk0M2U1YzM1MTRjMDE3NDViZjZiYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.4scM_4bD4I3kPpJ-eKlrzcJvLhcyAHdZDFdBplamIzE'
+    //     }
+
+    // };
+
+    // const getMovies = async (page, busqueda) => {
+    //     let fetchUrl = busqueda ?
+    //         `https://api.themoviedb.org/3/search/movie?include_adult=false&language=es-ES&page=${page}&query=${busqueda}`
+    //         :
+    //         `https://api.themoviedb.org/3/discover/movie?include_adult=false&language=es-ES&page=${page}`
+
+    //     await axios.get(fetchUrl, {
+    //         params: {
+    //             api_key: apiKey,
+    //         }
+    //     })
+    //         // axios.get(fetchUrl, options)
+    //         .then((response) => {
+    //             // setPeliculas([]);
+    //             setPage(page + 1);
+    //             setPeliculas(peliculas.concat(response.data.results));
+    //             // setPeliculas(response.data.results);
+                
+    //             console.log("Se hizo un llamado a la API");
+    //             return response.data.results;
+    //         })
+    //         .catch((error) => { console.log(error) });
+    //     console.log(fetchUrl)
+    //     console.log(busqueda)
+    // }
+
+
+    // const buscar = async (e) => {
+    //     e.preventDefault();
+    //     if (busqueda) {
+    //         // setPeliculas([]);
+    //         setPage(1);
+    //         console.log(page);
+    //         await getMovies(page, busqueda);
+    //     }
+    // };
+
+    const getMovies = async (page, busqueda) => {
+        let fetchUrl = busqueda
+          ? `https://api.themoviedb.org/3/search/movie?include_adult=false&language=es-ES&page=${page}&query=${busqueda}`
+          : `https://api.themoviedb.org/3/discover/movie?include_adult=false&language=es-ES&page=${page}`;
+    
+        try {
+          const response = await axios.get(fetchUrl, {
+            params: {
+              api_key: apiKey,
+            },
+          });
+    
+          // Si es la primera página, reemplazamos el estado
+          if (page === 1) {
+            setPeliculas(response.data.results);
+          } else {
+            // Si es una página posterior, concatenamos los resultados
+            setPeliculas((prevPeliculas) => [...prevPeliculas, ...response.data.results]);
+          }
+          
+          console.log("Se hizo un llamado a la API");
+        } catch (error) {
+          console.log(error);
+          throw error;
         }
-    };
+      };
 
-    const getMovies = (page) => {
-
-        axios.get(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=es-ES&page=${page}&sort_by=popularity.desc`, options)
-            .then((response) => {
-                setPeliculas(peliculas.concat(response.data.results));
-                setFiltrado(filtrado.concat(response.data.results));
-                setPage(page + 1);
-                console.log("Se hizo un llamado a la API");
-            })
-            .catch((error) => { console.log(error) });
-
-    }
-    let filtro = (e) => {
-        setBusqueda(e.target.value);
-        filtrar(e.target.value);
-    }
-
-    const filtrar = (terminoBusqueda) => {
-        var resultadosBuscados = peliculas.filter((pelicula) => {
-            if (pelicula.title?.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())) {
-                return pelicula;
-            }
+      const buscar = async (e) => {
+        e.preventDefault();
+        setPeliculas([]);
+        setPage(1);
+    
+        try {
+          await getMovies(1, busqueda);
+          console.log("funciona buscar");
+        } catch (error) {
+          console.log(error);
         }
-        )
-        setFiltrado(resultadosBuscados);
-    }
-
+      };
+      const fetchMoreData = async () => {
+        const nextPage = page + 1;
+        try {
+          await getMovies(nextPage, busqueda);
+          setPage(nextPage);
+          console.log("Cargando más películas...");
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    
 
     useEffect(() => {
-        getMovies(page);
+        getMovies(1, busqueda);
     }, []);
 
 
     return (
         <div className='peliculas-container scroll-infinito' id='scroll-infinito' >
-            {/* <Form className="d-flex justify-content-center buscar-form">
-                <Form.Control
-                    type="search"
-                    placeholder="Buscar"
-                    className="mt-2 mb-4 "
-                    aria-label="Search"
-                    onChange={filtro}
-                />
 
-            </Form> */}
             <InfiniteScroll
-                className='mx-auto '
-                dataLength={filtrado.length}
-                next={() => {
-                    getMovies(page);
-                    // filtro(busqueda);
-                }}
+                className='mx-auto'
+                dataLength={peliculas.length}
+                // next={() => {
+                //     getMovies(page, busqueda);
+                // }}
+                next={fetchMoreData}
                 hasMore={true}
                 loader={<h4>Cargando...</h4>}
                 endMessage={
@@ -106,20 +158,27 @@ export default function Peliculas() {
             //     <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
             // }
             >
-                
-                <Form className="d-flex justify-content-center buscar-form">
+
+                <Form
+                    className="d-flex justify-content-center buscar-form"
+                    // onSubmit={buscar}
+                >
                     <Form.Control
                         type="search"
                         placeholder="Buscar"
                         className="mt-2 mb-4 "
                         aria-label="Search"
-                        onChange={filtro}
+                        onChange={(e) => { SetBusqueda(e.target.value) }}
                     />
+                    <Button
+                        variant="outline-light"
+                    onClick={buscar}
+                    >Search</Button>
 
                 </Form>
 
                 <Row xs={2} sm={2} md={3} lg={4} xl={5} className="g-1 m-auto d-flex justify-content-center">
-                    {filtrado.map((pelicula) => (
+                    {peliculas.map((pelicula) => (
 
                         pelicula.poster_path ?
                             <Col key={pelicula.id} className='m-auto d-flex justify-content-center'>

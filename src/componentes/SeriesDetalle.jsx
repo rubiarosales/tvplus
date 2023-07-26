@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Slider from "react-slick";
 import Sugeridas from './Sugeridas';
 import TvSugeridas from './TvSugeridas';
-
+import '../estilos/pelisDetalles.css';
 
 
 export default function TvDetalle() {
@@ -156,7 +156,7 @@ export default function TvDetalle() {
   };
 
   return (
-    <div>
+    <div className='detalles-container'>
       {trailerOficial && trailerOficial.length > 0 ? (
         <YouTube
           videoId={trailerOficial[0].key}

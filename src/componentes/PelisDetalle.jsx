@@ -5,6 +5,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Slider from "react-slick";
 import Sugeridas from './Sugeridas';
+import '../estilos/pelisDetalles.css';
 
 
 
@@ -155,7 +156,7 @@ export default function PelisDetalle() {
   };
 
   return (
-    <div>
+    <div className='detalles-container'>
     
       {trailerOficial && trailerOficial.length > 0 ? (
         <YouTube

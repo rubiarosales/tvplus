@@ -7,8 +7,14 @@
 
 .peliculas-container{
     position: relative;
-    /* margin: auto; */
+    margin: auto;
+    color: white;
     margin-top: 80px;
+}
+
+.descubre-container{
+    position: relative;
+    margin: auto;
     color: white;
 }
 

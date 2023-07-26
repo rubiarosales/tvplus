@@ -25,7 +25,7 @@ export default function DescubreTv() {
         }
     };
     useEffect(() => {
-        axios.get('https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=es-ES&page=2&sort_by=popularity.desc', options)
+        axios.get('https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=es-ES&page=1&sort_by=popularity.desc', options)
             .then((response) => {
                 setTvseries(response.data.results);
             })
@@ -93,7 +93,7 @@ export default function DescubreTv() {
 
 
     return (
-        <div className='tv-container'>
+        <div className='descubre-container'>
 
             <h2 className='text-start mx-2'>Nuestras Series de TV</h2>
             <Slider {...settings} className='slider-tv'>

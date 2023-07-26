@@ -1,4 +1,7 @@
 .genero-card{
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
     height: 150px;
     border: 1px solid black;
     text-align: center;

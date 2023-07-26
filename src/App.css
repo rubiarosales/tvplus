@@ -6,7 +6,9 @@
 /* .slick-list{
   padding: 0;
 } */
-
+.btn-buscar{
+  height: fit-content;
+}
 .options {
   opacity: 0;
   position: absolute;

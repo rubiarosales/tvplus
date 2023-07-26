@@ -18,7 +18,7 @@ import { FaCirclePlus } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { AiFillHeart } from "react-icons/ai";
-
+import { FiSearch } from "react-icons/fi";
 
 export default function Peliculas() {
 
@@ -160,7 +160,7 @@ export default function Peliculas() {
             >
 
                 <Form
-                    className="d-flex justify-content-center buscar-form"
+                    className="d-flex justify-content-center buscar-form align-items-baseline"
                     // onSubmit={buscar}
                 >
                     <Form.Control
@@ -173,7 +173,8 @@ export default function Peliculas() {
                     <Button
                         variant="outline-light"
                     onClick={buscar}
-                    >Search</Button>
+                    className='btn-buscar mx-1'
+                    ><FiSearch/></Button>
 
                 </Form>
 

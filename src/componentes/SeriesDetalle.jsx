@@ -156,7 +156,7 @@ export default function TvDetalle() {
   };
 
   return (
-    <div className='detalles-container'>
+    <div className='detalles-container margen-sup'>
       {trailerOficial && trailerOficial.length > 0 ? (
         <YouTube
           videoId={trailerOficial[0].key}

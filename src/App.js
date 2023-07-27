@@ -16,6 +16,8 @@ import React, { useContext } from 'react';//ESTO TAMBIEN
 import Recupero from './componentes/Recupero';
 import ProtectedRoute from './componentes/ProtectedRoute';
 import CrearUsuario from './componentes/CrearUsuario';
+import Perfil from './componentes/Perfil';
+import EditarUsuario from './componentes/EditarUsuario';
 
 
 function App() {
@@ -49,8 +51,18 @@ function App() {
                 <CrearUsuario />
               </ProtectedRoute>
             } />
+
+            <Route path="/editarusuario/:id" element={
+              <ProtectedRoute>
+                <EditarUsuario />
+              </ProtectedRoute>
+            } />
             <Route path="/peliculas" element={<Peliculas />} />
             <Route path="/seriestv" element={<Series />} />
+            <Route path="/perfil/:id" element={
+              <ProtectedRoute>
+                <Perfil />
+              </ProtectedRoute>} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

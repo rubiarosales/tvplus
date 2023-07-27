@@ -13,7 +13,7 @@ export default function Home() {
     console.log(user)
 
     return (
-        <div>
+        <div className='margen-sup'>
             <Destacadas/>
             <Recomendadas/>
             <DescubrePelis/>

@@ -5,7 +5,7 @@ import { PiHandsClappingDuotone } from "react-icons/pi";
 import Button from 'react-bootstrap/Button';
 import { useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
-import { setDoc, doc, collection } from 'firebase/firestore/lite';
+import { setDoc, doc, collection } from 'firebase/firestore';
 import { db } from '../firebaseConfig/Firebase';
 import Swal from 'sweetalert2'
 import axios from 'axios';
@@ -113,7 +113,7 @@ function Registro() {
 
 
     return (
-        <div className='m-4'>
+        <div className='m-4 margen-sup'>
 
 
             <h3 className='text-center text-white'>Bravo! Vamos a registrarte</h3>

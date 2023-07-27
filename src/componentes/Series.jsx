@@ -129,7 +129,7 @@ export default function Series() {
 
 
     return (
-        <div className='tv-container scroll-infinito' id='scroll-infinito' >
+        <div className='tv-container scroll-infinito margen-sup' id='scroll-infinito' >
 
 
 

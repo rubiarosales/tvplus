@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, sendPasswordResetEmail } from "firebase/auth";
 import { auth } from '../firebaseConfig/Firebase';
 import { useEffect } from 'react';
-import { collection, getDocs, getDoc,doc } from 'firebase/firestore/lite';
+import { collection, getDocs, getDoc,doc } from 'firebase/firestore';
 import { dbCollections } from '../firebaseConfig/Collections';
 import { db } from '../firebaseConfig/Firebase';
 
@@ -105,7 +105,7 @@ export default function AuthProvider({ children }) {
 
 
   return (
-    <AuthContext.Provider value={{ registrar, entrar, user, salir, recuperar, userData }}>
+    <AuthContext.Provider value={{ registrar, entrar, user, salir, recuperar, userData ,getUsuarioById}}>
       {children}
     </AuthContext.Provider>
   )

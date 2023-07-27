@@ -1,0 +1,42 @@
+.user-profile{
+    margin-top: 70px;
+}
+
+.acordeon{
+    background-color: #75082e83;
+}
+
+.acordeon-header{
+    background-color: #a40c0c;
+}
+
+.perfil-img{
+    border-radius: 50%;
+    width: 200px;
+}
+.perfil-data{
+    width: 300px;
+}
+
+.perfil-opt{
+    max-width: 300px;
+    
+}
+
+@media only screen and (min-width: 501px){
+    .perfil-img{
+        
+        width: 250px;
+    }
+
+    .perfil-form{
+        max-width: 900px;
+        margin: auto;
+    }
+
+    .perfil-opt{
+
+        max-width: 500px;
+        
+    }
+}

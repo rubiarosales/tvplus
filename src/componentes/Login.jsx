@@ -42,7 +42,7 @@ function Login() {
 
 console.log(user)
   return (
-    <div className='m-4'>
+    <div className='margen-sup'>
       { !user && <h3 className='text-center text-white'>Ups! Parece que no has ingresado</h3>}
       <h3 className='text-center text-white fs-2'><HiOutlineEmojiSad /></h3>
       <Form onSubmit={manejarLogin} className='m-auto log-form p-4 d-flex flex-column'>

@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Swal from 'sweetalert2'
 import { useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
-import { collection, addDoc } from 'firebase/firestore/lite';
+import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig/Firebase';
 
 
@@ -66,7 +66,7 @@ function CrearUsuario() {
 
 
 return (
-    <div className='m-4'>
+    <div className='margen-sup'>
 
 
         <h3 className='text-center text-white'>Bravo! Vamos a registrarte</h3>

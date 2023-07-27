@@ -131,7 +131,7 @@ export default function Peliculas() {
 
 
     return (
-        <div className='peliculas-container scroll-infinito' id='scroll-infinito' >
+        <div className='peliculas-container scroll-infinito margen-sup' id='scroll-infinito' >
 
             <InfiniteScroll
                 className='mx-auto'

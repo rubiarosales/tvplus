@@ -6,7 +6,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { HiUsers } from "react-icons/hi";
 import { HiMiniArrowRightOnRectangle } from "react-icons/hi2";
 // import { useContext } from 'react';
@@ -18,6 +18,7 @@ function Menu() {
   // const user = useContext(UserContext);
   const { user, userData } = useAuth();
   const { salir } = useAuth();
+
   const manejarSalida = async () => {
 
     try {
@@ -46,11 +47,20 @@ function Menu() {
           data-bs-theme="dark"
           className="menu-off"
         >
-          {user ? <div className='d-flex justify-content-start align-items-end'>
+          {user ? 
+           <>
+          <div className='d-flex justify-content-start align-items-end'>
             <img className='avatar-sm' src={userData.Imagen} alt={userData.Nombre} />
             <h2 className='text-white text-end mx-1'> {userData.Nombre} </h2>
             
+            <Link className='text-decoration-none text-white align-self-center p-2' style={{'marginLeft': 'auto'}} to={`/perfil/${user.uid}`}>Ver Perfil</Link>
+
           </div> 
+          {/* <div className='mx-2 fs-5'>
+          <Link className='text-decoration-none text-white text-center' to={`/perfil/${userData.id}`}>Ver Perfil</Link>
+          </div>  */}
+          </>
+
           : ""}
 
           <Offcanvas.Header closeButton>
@@ -65,15 +75,15 @@ function Menu() {
               <Nav.Link href="#action2"><Link className='text-decoration-none text-white text-center' to='/seriestv'>Series</Link></Nav.Link>
           
             </Nav>
-            <Form className="d-flex">
+           {/* <Form className="d-flex">
               <Form.Control
                 type="search"
                 placeholder="Buscar"
                 className="me-2"
                 aria-label="Search"
               />
-              {/* <Button variant="outline-light">Search</Button> */}
-            </Form>
+              <Button variant="outline-light">Search</Button>
+            </Form> */}
             {!user && <Nav.Link href="#action2"><Link className={`text-decoration-none text-white text-center fs-3`} to='/login'><HiUsers /></Link></Nav.Link>}
             {user && <Nav.Link href="#action2"><Link className='text-decoration-none text-white text-center fs-3' onClick={manejarSalida}><HiMiniArrowRightOnRectangle /></Link></Nav.Link>}
 

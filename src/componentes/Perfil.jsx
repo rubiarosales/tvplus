@@ -6,6 +6,7 @@ import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import '../estilos/perfil.css';
 import Accordion from 'react-bootstrap/Accordion';
 import { useAuth } from './AuthContext';
+import Favoritos from './Favoritos';
 
 export default function Perfil() {
 
@@ -73,10 +74,20 @@ export default function Perfil() {
 
                     </Accordion.Body>
                 </Accordion.Item>
-                <Accordion.Item eventKey="1">
-                    <Accordion.Header>Tus Favoritos</Accordion.Header>
+                <Accordion.Item eventKey="1"
+                className='acordeon'>
+                    <Accordion.Header >Tus Películas Favoritas</Accordion.Header>
                     <Accordion.Body>
-                        Acá una lista con el crud
+                        
+                        <Favoritos/>
+                    </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="2"
+                className='acordeon'>
+                    <Accordion.Header >Tus Series Favoritas</Accordion.Header>
+                    <Accordion.Body>
+                      <p className='text-white'>  ***En construcción***</p>
+                        <Favoritos/>
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>

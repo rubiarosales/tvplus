@@ -21,11 +21,15 @@
     transition: opacity 500ms;
 }
 
-
+.dest-icons:hover{
+    color: rgb(189, 3, 43);
+}
 .dest-icons {
     font-size: 100px;
     margin: 20px;
     color: rgb(175, 16, 66);
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .destacadas-info {

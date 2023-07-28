@@ -7,9 +7,11 @@ import { FaCirclePlay } from 'react-icons/fa6';
 import { FaCirclePlus } from 'react-icons/fa6';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 export default function Sugeridas() {
-
+    
+    const { user, userData, agregarFav } = useAuth();
     const { id } = useParams();
     const urlImg = 'https://image.tmdb.org/t/p/w500';
     // TRAER RECOMENDACIONES DE TMDB SEGUN ID SELECCIONADO
@@ -123,7 +125,9 @@ export default function Sugeridas() {
                             <Card.Img variant="top" src={urlImg + sugerida.poster_path} className='m-auto h-100' />
 
                             <div className='options'>
-                                <h3 className='icons'> <FaCirclePlus /></h3>
+                                <h3 className='dest-icons'
+                                    onClick={() => agregarFav(sugerida.id)}
+                                > <FaCirclePlus /></h3>
                                 <h3 className='icons' > <Link className='text-decoration-none text-white text-center' to={`/detallepelis/${sugerida.id}`}><FaCirclePlay /></Link></h3>
                             </div>
 

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, sendPasswordResetEmail } from "firebase/auth";
 import { auth } from '../firebaseConfig/Firebase';
 import { useEffect } from 'react';
-import { collection, getDocs, getDoc,doc } from 'firebase/firestore';
+import { collection, arrayRemove , getDoc,doc,updateDoc } from 'firebase/firestore';
 import { dbCollections } from '../firebaseConfig/Collections';
 import { db } from '../firebaseConfig/Firebase';
 
@@ -24,6 +24,8 @@ export default function AuthProvider({ children }) {
   //1. declaracion de variables de estado
   const [user, setUser] = useState(null);
   const [userData, setUserData] = useState([]);
+  const [favs, setFavs] = useState([]);
+  const [nuevoFav, setNuevoFav] = useState([]);
 
   //2. Referencia a la BD
   const userCollection = collection(db, "Usuarios");
@@ -56,24 +58,6 @@ export default function AuthProvider({ children }) {
     }
   }
 
-  // const cargarDatos = async (nombre) =>{
-  //    try {
-
-  //     if (user) {
-  //       await updateProfile(user, {
-  //         displayName: nombre
-
-  //       });
-  //       console.log("Datos cargados correctamente.");
-  //     }else {
-  //       console.log("No hay un usuario autenticado.");
-  //     }
-
-  //    } catch (error) {
-  //     console.error("Error al cargar los datos:", error);
-  //    }
-  // }
-
   //
   const entrar = async (email, password) => {
     await signInWithEmailAndPassword(auth, email, password);
@@ -92,8 +76,46 @@ export default function AuthProvider({ children }) {
     }
   }
 
+// OJO OJO OJO OJO 
+  //CORREGIR VALIDACION PARA QUE NO REPITA Y AGREGAR SWEET ALERT
+  const agregarFav = async(id) => {
+    if(user){
+    if(favs.includes(id)){
+      console.log("Ya esta en tu lista")
+    }else{
+      const nuevosFavs = [...favs, id]; // Almacena el estado actualizado en una variable
+      setFavs(nuevosFavs);
+     try {
+      const usuario = doc(db, dbCollections.Usuarios, user.uid)
+    const dataFav={
+        Favoritos : nuevosFavs
+        // Favoritos : favs.push(nuevoFav)
+    }
 
+   //El merge es porque me estaba sobreescribiendo y me volvia
+        await updateDoc(usuario,dataFav, { merge: true })
+    } catch (error) {
+        console.log(error);
+    }
+    }
+    }
+}
 
+const eliminarFav = async (id) => {
+  if (user) {
+    // Crea una referencia al documento del usuario
+    const usuarioRef = doc(db, dbCollections.Usuarios, user.uid);
+
+    // Actualiza el campo "Favoritos" utilizando FieldValue.arrayRemove()
+    try {
+      await updateDoc(usuarioRef, {
+        Favoritos: arrayRemove(id),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+};
   //el unsubscribe es para que no quede la info en memoria
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -105,7 +127,7 @@ export default function AuthProvider({ children }) {
 
 
   return (
-    <AuthContext.Provider value={{ registrar, entrar, user, salir, recuperar, userData ,getUsuarioById}}>
+    <AuthContext.Provider value={{ registrar, entrar, user, salir, recuperar, userData ,getUsuarioById, agregarFav,eliminarFav}}>
       {children}
     </AuthContext.Provider>
   )

@@ -12,9 +12,11 @@ import '../index.css';
 import { FaCirclePlay } from 'react-icons/fa6';
 import { FaCirclePlus } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 export default function DescubrePelis() {
 
+    const { user, userData, agregarFav } = useAuth();
     const [peliculas, setPeliculas] = useState([]);
     const urlImg = 'https://image.tmdb.org/t/p/original';
     const options = {
@@ -106,7 +108,9 @@ export default function DescubrePelis() {
                             <Card.Img variant="top" src={urlImg + pelicula.backdrop_path} className='m-auto' />
 
                             <div className='options'>
-                                <h3 className='icons'> <FaCirclePlus /></h3>
+                                <h3 className='icons'
+                                    onClick={() => agregarFav(pelicula.id)}
+                                > <FaCirclePlus /></h3>
                                 <h3 className='icons' > <Link className='text-decoration-none text-white text-center' to={`/detallepelis/${pelicula.id}`}><FaCirclePlay /></Link></h3>
                             </div>
 

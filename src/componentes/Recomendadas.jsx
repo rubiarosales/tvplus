@@ -13,9 +13,11 @@ import '../index.css';
 import { FaCirclePlay } from 'react-icons/fa6';
 import { FaCirclePlus } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 export default function Recomendadas() {
 
+    const {agregarFav} = useAuth();
     const [recomendadas, setRecomendadas] = useState([]);
     const urlImg = 'https://image.tmdb.org/t/p/w500';
     const options = {
@@ -104,7 +106,9 @@ export default function Recomendadas() {
                         <Card.Img variant="top" src={urlImg + recomendada.poster_path} className='m-auto' />
 
                         <div className='options'>
-                            <h3 className='icons'> <FaCirclePlus /></h3>
+                        <h3 className='icons'
+                                    onClick={() => agregarFav(recomendada.id)}
+                                > <FaCirclePlus /></h3>
                             <h3 className='icons' > <Link className='text-decoration-none text-white text-center'to={`/detallepelis/${recomendada.id}`}><FaCirclePlay /></Link></h3>
                         </div>
 

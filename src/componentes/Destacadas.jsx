@@ -11,9 +11,11 @@ import '../estilos/destacadas.css';
 import { FaCirclePlay } from 'react-icons/fa6';
 import { FaCirclePlus } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 export default function Destacadas() {
 
+  const { user, userData, agregarFav } = useAuth();
   const [pelis, setPelis] = useState([]);
   const urlImg = 'https://image.tmdb.org/t/p/original';
 
@@ -65,8 +67,10 @@ export default function Destacadas() {
               <p className='destacadas-resumen resumen-responsive'>{peli.overview}</p>
             </div>
             <div className='dest-options'>
-            <h3 className='dest-icons'> <FaCirclePlus/></h3>
-            <h3 className='dest-icons' > <Link className=' text-center'to={`/detallepelis/${peli.id}`}><FaCirclePlay /></Link></h3>
+            <h3 className='dest-icons'
+            onClick={()=>agregarFav(peli.id)}
+            > <FaCirclePlus/></h3>
+            <h3 className='dest-icons' > <Link className=' text-center dest-icons'to={`/detallepelis/${peli.id}`}><FaCirclePlay /></Link></h3>
             </div>
           </Card>
         </Col>

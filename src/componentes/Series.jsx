@@ -184,7 +184,8 @@ export default function Series() {
 
                                     <div className='options'>
                                         <h3 className='icons'> <FaCirclePlus /></h3>
-                                        <h3 className='icons' > <Link to={`/detalletv/${tv.id}`}><FaCirclePlay /></Link></h3>
+                                        {/* <h3 className='icons' > <Link to={`/detalletv/${tv.id}`}><FaCirclePlay /></Link></h3> */}
+                                        <h3 className='icons ' >                                         <Link className='text-decoration-none text-white text-center' to={`/detallepelis/${tv.id}`}><FaCirclePlay /></Link></h3>
                                     </div>
                                     <Card.Title className='text-center'>{tv.name}</Card.Title>
                                     <Card.Text className='fs-6 text-end'>

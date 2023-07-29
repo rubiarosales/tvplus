@@ -18,6 +18,7 @@ import ProtectedRoute from './componentes/ProtectedRoute';
 import CrearUsuario from './componentes/CrearUsuario';
 import Perfil from './componentes/Perfil';
 import EditarUsuario from './componentes/EditarUsuario';
+import Footer from './componentes/Footer';
 
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
                 <Perfil />
               </ProtectedRoute>} />
           </Routes>
+          <Footer/>
         </BrowserRouter>
       </AuthProvider>
     </div>

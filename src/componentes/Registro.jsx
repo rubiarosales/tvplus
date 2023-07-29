@@ -9,6 +9,7 @@ import { setDoc, doc, collection } from 'firebase/firestore';
 import { db } from '../firebaseConfig/Firebase';
 import Swal from 'sweetalert2'
 import axios from 'axios';
+import '../App.css';
 
 function Registro() {
 
@@ -19,7 +20,7 @@ function Registro() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [nombre, setNombre] = useState("");
-    const [avatar, setAvatar] = useState("");
+    const [avatar, setAvatar] = useState("../../user.svg");
     const [error, setError] = useState();
     const [data, setData] = useState([]);
 
@@ -52,16 +53,24 @@ function Registro() {
             // navigate('/crearusuario')
         } catch (error) {
             if (error.code === "auth/email-already-in-use") {
-                setError("Email ya resgistrado")
+                setError("Email ya resgistrado");
+                // alertaError(error);
             } else {
                 if (error.code === "auth/weak-password") {
-                    setError("Contraseña muy débil")
+                    setError("Contraseña muy débil");
+                    // alertaError(error);
                 } else {
-                    setError(error.code)
-                }
+                    setError(error.code);
+                    // alertaError(error);
+                }  
+                
             }
+            //no me toma la variable de estado
+            alertaError(error)
+        
+          
         }
-
+        
     }
 
 
@@ -79,6 +88,14 @@ function Registro() {
             showConfirmButton: false,
             timer: 1500
         })
+    }
+    const alertaError = (error)=>{
+        Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `${error}`,
+           
+              })
     }
 
     //4. Asincronismo con la bd (Crud)
@@ -113,11 +130,21 @@ function Registro() {
 
 
     return (
-        <div className='m-4 margen-sup'>
+        <div className='margen-sup'>
 
 
             <h3 className='text-center text-white'>Bravo! Vamos a registrarte</h3>
+
             <h3 className='text-center text-white fs-2'><PiHandsClappingDuotone /></h3>
+
+            <img
+        
+        alt="TMDB logo"
+        src={avatar}
+        width="150"
+        height="150"
+        className="avatar-reg d-flex mx-auto mt-4"
+      />
             <Form onSubmit={manejarRegistro} className='m-auto log-form p-4 d-flex flex-column'>
                 <div className='mb-2 text-white'>
                     <Form.Label htmlFor="inputNombre5">Nombre</Form.Label>
@@ -128,6 +155,7 @@ function Registro() {
                         value={nombre}
                         onChange={(e) => setNombre(e.target.value)}
                         aria-describedby="nombreHelpBlock"
+                        required
                     />
 
                 </div>
@@ -159,14 +187,14 @@ function Registro() {
                     </Form.Text>
                 </div>
                 <div className='mb-2 text-white'>
-                    <Form.Label htmlFor="inputPassword5">Selecciona un avatar</Form.Label>
+                    <Form.Label htmlFor="inputPassword5">Selecciona un avatar:</Form.Label>
 
-                    <Form.Control
+                    {/* <Form.Control
                         type="text"
                         id="inputImg5"
                         value={avatar}
                         aria-describedby="imgHelpBlock"
-                    />
+                    /> */}
 
                     <div className='mt-2'>
                     {data.map((dato) => (
@@ -176,7 +204,10 @@ function Registro() {
                     </div>
                 </div>
 
-                {error && <p className='text-white text-center mt-3'>ERROR: {error}</p>}
+                {/* {error && <p className='text-white text-center mt-3'>ERROR: {error}</p>} */}
+
+                {/* {error && alertaError(error)} */}
+                
 
                 <Button className='mt-3 w-50 align-self-center' variant="dark" type='submit'>Enviar</Button>
             </Form>

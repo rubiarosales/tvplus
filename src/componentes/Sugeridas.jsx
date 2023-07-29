@@ -125,7 +125,7 @@ export default function Sugeridas() {
                             <Card.Img variant="top" src={urlImg + sugerida.poster_path} className='m-auto h-100' />
 
                             <div className='options'>
-                                <h3 className='dest-icons'
+                                <h3 className='icons'
                                     onClick={() => agregarFav(sugerida.id)}
                                 > <FaCirclePlus /></h3>
                                 <h3 className='icons' > <Link className='text-decoration-none text-white text-center' to={`/detallepelis/${sugerida.id}`}><FaCirclePlay /></Link></h3>

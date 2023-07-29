@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import axios from "axios";
 import '../estilos/generos.css';
 
-
+//ACA CONVIENE SEPARAR PELIS Y TV PARA PODER HACER LA BUSQUEDA POR GENERO
 export default function Generos() {
     let generos = [];
     const [generosPelis, setGenerosPelis] = useState([]);

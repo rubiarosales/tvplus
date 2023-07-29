@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getDoc, doc, updateDoc } from 'firebase/firestore';
 import { dbCollections } from '../firebaseConfig/Collections';
 import { useAuth } from './AuthContext';
@@ -10,7 +11,7 @@ import Button from 'react-bootstrap/Button';
 import { db } from '../firebaseConfig/Firebase';
 import Swal from 'sweetalert2';
 import { collection } from 'firebase/firestore';
-// import withReactContent from 'sweetalert2-react-content';
+
 
 
 export default function EditarUsuario() {
@@ -66,9 +67,11 @@ console.log(id)
 const alertaGuardado = () => {
 
     Swal.fire(
-        'Felicidades!',
-        'El registro ha sido editado.',
-        'success'
+       { 
+        title:'Tus datos han sido editados.',
+        icon: 'success',
+        timer: 1000,
+        showConfirmButton: false,}
     )
 
 }
@@ -86,7 +89,9 @@ const alertaGuardado = () => {
             await updateDoc(usuario, data);
             alertaGuardado();
             getUsuarioById(id);
-            // navigate(`perfil/${id}`);
+            // fue la unica forma que encontré para volver al perfil :S
+            setTimeout(()=>navigate('/perfil/id'),1500)
+            
             console.log("Seactualizo correctamente")
         } catch (error) {
             console.log(error)

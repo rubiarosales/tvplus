@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { collection, arrayRemove , getDoc,doc,updateDoc } from 'firebase/firestore';
 import { dbCollections } from '../firebaseConfig/Collections';
 import { db } from '../firebaseConfig/Firebase';
+import Swal from 'sweetalert2';
 
 export const AuthContext = React.createContext();
 
@@ -81,6 +82,7 @@ export default function AuthProvider({ children }) {
   const agregarFav = async(id) => {
     if(user){
     if(favs.includes(id)){
+      alertaFavExistente();
       console.log("Ya esta en tu lista")
     }else{
       const nuevosFavs = [...favs, id]; // Almacena el estado actualizado en una variable
@@ -93,13 +95,38 @@ export default function AuthProvider({ children }) {
     }
 
    //El merge es porque me estaba sobreescribiendo y me volvia
-        await updateDoc(usuario,dataFav, { merge: true })
+        await updateDoc(usuario,dataFav, { merge: true });   alertaFavAgregado();
     } catch (error) {
         console.log(error);
     }
     }
     }
+ 
+};
+
+
+    // Creación de Alerta
+
+    const alertaFavAgregado = () => {
+      Swal.fire({
+          // position: 'top-end',
+          icon: 'success',
+          title: 'Se ha agregado a tus favoritos',
+          showConfirmButton: false,
+          timer: 1500
+      })
+  }
+
+  const alertaFavExistente = () => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Ya está en tu lista de favoritos',
+      // footer: '<a href="">Why do I have this issue?</a>'
+    });
 }
+
+
 
 const eliminarFav = async (id) => {
   if (user) {

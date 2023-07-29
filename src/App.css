@@ -36,7 +36,13 @@
   position: absolute;
   margin: 0 50px;
 }
+/* .foot{
+  margin-top: 100px;
+} */
 
+.App{
+  padding-bottom: 70px;
+}
 .options:hover {
   opacity: 1;
   transition: opacity 500ms;
@@ -60,6 +66,7 @@
 .avatar-img{
   width: 80px;
   border-radius: 50%;
+  cursor: pointer;
 }
 .avatar-sm{
   width: 40px;

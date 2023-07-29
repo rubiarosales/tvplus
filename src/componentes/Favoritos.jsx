@@ -16,7 +16,7 @@ import { FaCirclePlus } from 'react-icons/fa6';
 import { FaTrashCan } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import { AiFillHeart } from "react-icons/ai";
-
+import Swal from 'sweetalert2';
 
 
 export default function Favoritos() {
@@ -27,7 +27,7 @@ export default function Favoritos() {
     const [favInfo, setFavInfo] = useState([]);
 
     //llamo el usuario actual desde el AuthContext
-    const { user, userData, getUsuarioById,eliminarFav } = useAuth();
+    const { user, userData, getUsuarioById,eliminarFav ,} = useAuth();
 
     //2. Referencia a la BBDD
     // const usuariosCollection = collection (db,"Usuarios");
@@ -93,6 +93,30 @@ export default function Favoritos() {
         }
     };
 
+    const confirmEliminarFav =(id)=>{
+   
+        Swal.fire({
+          title: '¿Estás seguro de eliminar este favorito?',
+          text: "No podrás volver atrás",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, bórralo!'
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+           await eliminarFav(id);
+        
+            Swal.fire(
+              'Eliminado!',
+              'Tu favorito fue eliminado',
+              'success'
+            )
+            getFavs();
+          }
+        })
+        }
+
 
     console.log(favInfo);
 
@@ -116,45 +140,48 @@ export default function Favoritos() {
 
     return (
         <div>
-            {favs.length > 0 ?
-                <Row xs={2} sm={2} md={3} lg={4} xl={5} className="g-1 m-auto d-flex justify-content-center">
-                    {favInfo.map((fav) => (
+            {favs?
+            favs.length > 0 ?
+            <Row xs={2} sm={2} md={3} lg={4} xl={5} className="g-1 m-auto d-flex justify-content-center">
+                {favInfo.map((fav) => (
 
-                        fav.poster_path ?
-                            <Col key={fav.id} className='m-auto d-flex justify-content-center'>
-                                <Card style={{ width: '16rem' }} className='peliculas-card h-100 '>
-                                    <Card.Img variant="top" src={urlImg + fav.poster_path} className='m-auto' />
+                    fav.poster_path ?
+                        <Col key={fav.id} className='m-auto d-flex justify-content-center'>
+                            <Card style={{ width: '16rem' }} className='peliculas-card h-100 '>
+                                <Card.Img variant="top" src={urlImg + fav.poster_path} className='m-auto' />
 
-                                    <div className='options d-flex'>
-                                        <h3 className='icons'> <FaCirclePlus /></h3>
-                                        <h3 className=' p-1 align-self-end'
-                                        onClick={()=>{
-                                            eliminarFav(fav.id);
-                                            getFavs();
-                                            }}>
-                                            <FaTrashCan />
-                                        </h3 >
-                                        <h3 className='icons ' > <Link className='text-decoration-none text-white text-center' to={`/detallepelis/${fav.id}`}><FaCirclePlay /></Link></h3>
-                                        
+                                <div className='options d-flex align-items-center'>
+                                    {/* <h3 className='icons'> <FaCirclePlus /></h3> */}
+                                    <h3 className=' icons'
+                                    onClick={()=>{
+                                        confirmEliminarFav(fav.id);
+                                        // getFavs();
+                                        }}>
+                                        <FaTrashCan />
+                                    </h3 >
+                                    <h3 className=' icons ' > <Link className='text-decoration-none text-white text-center' to={`/detallepelis/${fav.id}`}><FaCirclePlay /></Link></h3>
+                                    
 
-                                    </div>
-                                    <Card.Title className='text-center'>{fav.title}</Card.Title>
+                                </div>
+                                <Card.Title className='text-center'>{fav.title}</Card.Title>
 
-                                    <Card.Text className='fs-6 text-end p-1'>
-                                        <AiFillHeart /> {fav.vote_average}/10
+                                <Card.Text className='fs-6 text-end p-1'>
+                                    <AiFillHeart /> {fav.vote_average}/10
 
-                                    </Card.Text>
+                                </Card.Text>
 
 
-                                </Card>
+                            </Card>
 
-                            </Col>
-                            :
-                            console.log(`No hay imagen disponible de ${fav.title}`)
-                    ))}
-                </Row>
-                :
-                <p className='fs-4 text-center text-white'>Aun no tienes Favoritos</p>}
+                        </Col>
+                        :
+                        console.log(`No hay imagen disponible de ${fav.title}`)
+                ))}
+            </Row>
+            :
+            <p className='fs-4 text-center text-white'>Aun no tienes Favoritos</p>
+        :
+        <p className='fs-4 text-center text-white'>Aun no tienes Favoritos</p>}
 
 
 

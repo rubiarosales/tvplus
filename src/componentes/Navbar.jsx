@@ -51,7 +51,7 @@ function Menu() {
            <>
           <div className='d-flex justify-content-start align-items-end'>
             <img className='avatar-sm' src={userData.Imagen} alt={userData.Nombre} />
-            <h2 className='text-white text-end mx-1'> {userData.Nombre} </h2>
+            <h2 className='text-white text-center mx-1 text-wrap'> {userData.Nombre} </h2>
             
             <Link className='text-decoration-none text-white align-self-center p-2' style={{'marginLeft': 'auto'}} to={`/perfil/${user.uid}`}>Ver Perfil</Link>
 

@@ -19,7 +19,7 @@ export default function Perfil() {
 
     return (
         <div className='user-profile margen-sup'>
-            <h3>Hola {userData.Nombre}</h3>
+            <h3 className='text-white px-3'>Hola {userData.Nombre}</h3>
             <Accordion className='acordeon' defaultActiveKey={['0']} alwaysOpen flush>
                 <Accordion.Item eventKey="0" className='acordeon'>
                     <Accordion.Header className='acordeon-header'>Datos Personales</Accordion.Header>
@@ -86,8 +86,8 @@ export default function Perfil() {
                 className='acordeon'>
                     <Accordion.Header >Tus Series Favoritas</Accordion.Header>
                     <Accordion.Body>
-                      <p className='text-white'>  ***En construcción***</p>
-                        <Favoritos/>
+                      <p className='text-white text-center fs-3'>  *** En construcción ***</p>
+                        {/* <Favoritos/> */}
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
